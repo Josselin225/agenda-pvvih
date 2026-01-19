@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+:root {
+    --side-gradient: linear-gradient(180deg, #0a3d1d 0%, #5a0c0c 100%);
+    --bg-main: #f8f9fc;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    margin: 0;
+    display: flex;
+}
+
+
+/* Sidebar */
+
+.sidebar {
+    width: 260px;
+    background: var(--side-gradient) !important;
+    min-height: 100vh;
+    border-radius: 0 30px 30px 0;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    color: white;
+}
+
+.logo-circle {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.7) !important;
+    padding: 12px 20px !important;
+    margin: 5px 15px;
+    border-radius: 12px !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #fff !important;
+    transform: translateX(5px);
+}
+
+
+/* Main Content */
+
+#content {
+    flex-grow: 1;
+    padding: 0;
+}
+
+.topbar {
+    background: white;
+    margin: 15px 25px;
+    padding: 15px 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* État réduit du Sidebar */
+
+.sidebar.collapsed {
+    width: 85px;
+    min-width: 85px;
+}
+
+
+/* On cache le texte quand c'est réduit */
+
+.sidebar.collapsed .logo-text,
+.sidebar.collapsed .link-text,
+.sidebar.collapsed hr {
+    display: none;
+}
+
+
+/* Centrer les icônes quand le menu est petit */
+
+.sidebar.collapsed .nav-link {
+    justify-content: center;
+    margin: 5px;
+}
+
+.sidebar.collapsed .nav-link i {
+    margin: 0 !important;
+    font-size: 1.5rem;
+}
+
+
+/* Ajustement du contenu principal pour prendre toute la place */
+
+#content {
+    transition: all 0.3s;
+}
+
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    /* Un léger voile blanc */
+    color: white !important;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.sidebar .nav-link:not(.active) {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.sidebar .nav-link:hover {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.1);
+}
