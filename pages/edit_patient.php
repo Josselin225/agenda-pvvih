@@ -18,7 +18,7 @@ if (!$patient) {
     exit;
 }
 ?>
-
+ <div id="content">
 <div class="container-fluid px-4 mt-4">
     <div class="d-flex align-items-center mb-4">
         <a href="patients.php" class="btn btn-white shadow-sm rounded-circle me-3 text-dark"><i class="bi bi-arrow-left"></i></a>
@@ -142,6 +142,7 @@ if (!$patient) {
         </div>
     </form>
 </div>
+ </div>
 
 <script>
 document.querySelector('input[name="date_naissance"]').addEventListener('change', function() {

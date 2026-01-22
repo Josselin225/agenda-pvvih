@@ -1,10 +1,11 @@
 <?php 
-    // 1. Connexion et calculs (Logique)
     require_once 'config/db.php'; 
 
     try {
         $countPatients = $pdo->query("SELECT COUNT(*) FROM patients")->fetchColumn();
-        $countRdv = $pdo->query("SELECT COUNT(*) FROM rendez_vous")->fetchColumn();
+        // Correction : Count des RDV du jour uniquement pour le dashboard
+        $aujourdhui = date('Y-m-d');
+        $countRdv = $pdo->query("SELECT COUNT(*) FROM rendez_vous WHERE date_prochain_rdv = '$aujourdhui'")->fetchColumn();
         $countRelances = $pdo->query("SELECT COUNT(*) FROM relances")->fetchColumn();
     } catch (Exception $e) {
         $countPatients = 0;
@@ -12,12 +13,6 @@
         $countRelances = 0;
     }
 ?>
-
-<?php 
-    // 4. Affichage de la fin de page (Scripts + Fermeture balises)
-    include 'includes/footer.php'; 
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -35,7 +30,7 @@
     <div id="content">
         <div class="topbar">
             <h4 id="page-title" class="fw-bold m-0">Tableau de Bord</h4>
-            <div class="user-info text-muted">Admin | 17 Jan 2026</div>
+            <div class="user-info text-muted">Admin | <?php echo date('d M Y'); ?></div>
         </div>
 
         <div class="container-fluid px-4 mt-4">
@@ -76,21 +71,31 @@
                             </div>
                             <div>
                                 <h6 class="text-muted mb-0">Relances urgentes</h6>
-                                <h2 class="fw-bold mb-0">0</h2> </div>
+                                <h2 class="fw-bold mb-0">0</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </div> <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
         $(document).ready(function () {
+            // Fonction de bascule de la sidebar
             $('#sidebarCollapse').on('click', function () {
                 $('.sidebar').toggleClass('collapsed');
-                // Optionnel: ajouter du CSS pour .sidebar.collapsed { width: 80px; }
+            });
+
+            // Optionnel : maintenir l'état au rafraîchissement
+            if(localStorage.getItem('sidebarState') === 'collapsed') {
+                $('.sidebar').addClass('collapsed');
+            }
+
+            $('.sidebar').on('transitionend', function() {
+                const isCollapsed = $(this).hasClass('collapsed');
+                localStorage.setItem('sidebarState', isCollapsed ? 'collapsed' : 'expanded');
             });
         });
     </script>
