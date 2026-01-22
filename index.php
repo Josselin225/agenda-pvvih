@@ -35,19 +35,22 @@
 
         <div class="container-fluid px-4 mt-4">
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm p-4 rounded-5 bg-white h-100">
-                        <div class="d-flex align-items-center">
-                            <div class="icon-box bg-success bg-opacity-10 text-success p-3 rounded-4 me-3">
-                                <i class="bi bi-people-fill fs-2"></i>
-                            </div>
-                            <div>
-                                <h6 class="text-muted mb-0">Total Patients</h6>
-                                <h2 class="fw-bold mb-0"><?php echo $countPatients; ?></h2>
+                    <div class="col-md-4">
+                        <a href="<?= BASE_URL ?>pages/patients.php" class="text-decoration-none text-dark">
+                        <div class="card border-0 shadow-sm p-4 rounded-5 bg-white h-100">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-box bg-success bg-opacity-10 text-success p-3 rounded-4 me-3">
+                                    <i class="bi bi-people-fill fs-2"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-0">Total Patients</h6>
+                                    <h2 class="fw-bold mb-0"><?php echo $countPatients; ?></h2>
+                                </div>
                             </div>
                         </div>
+                        </a>
                     </div>
-                </div>
+                
 
                 <div class="col-md-4">
                     <div class="card border-0 shadow-sm p-4 rounded-5 bg-white h-100">
